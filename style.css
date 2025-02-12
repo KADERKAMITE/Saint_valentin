@@ -1,0 +1,274 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fce4ec; /* Rose clair */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Aligner en haut */
+  min-height: 100vh; /* Assurer que le body prend au moins toute la hauteur de l'écran */
+  color: #333;
+  /* Ajout d'un fond décoratif subtil avec des coeurs et des bisous */
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg fill='%23f8bbd0'%3E%3Cpath d='M16 4l-4 4H4v8l-4 4l4 4v8h8l4 4l4-4h8v-8l4-4l-4-4V4h-8zM16 2.83L17.17 4l2.83 2.83l1.17 1.17H24v1.17l2.83 2.83L28 12l-2.83 2.83L24 17.17V24h-1.17l-2.83 2.83L16 28l-1.17-1.17L12 24H4v-1.17L1.17 20.17L4 16l2.83-2.83L7.17 12V4h1.17L10.17 1.17L12 4l1.17 1.17L16 7.17z'%3E%3C/path%3E%3C/g%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath fill='%23f48fb1' d='M24 4A20 20 0 0 0 4 24a20 20 0 0 0 40 0A20 20 0 0 0 24 4zm0 36a16 16 0 0 1-11.31-4.69l2.83-2.83A12 12 0 0 0 24 32a12 12 0 0 0 0-24 12 12 0 0 0-8.49 3.51l-2.83-2.83A16 16 0 0 1 24 4z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: repeat, repeat;
+  background-position: 0 0, 50% 50%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  position: relative; /* Nécessaire pour positionner les animations de bisous */
+}
+
+header, main, footer {
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  color: #e91e63; /* Rose plus vif */
+}
+
+#copine-name {
+  font-style: italic;
+  color: #c2185b;
+}
+
+#message p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+#special-element {
+  margin-top: 30px;
+}
+
+footer {
+  font-size: 0.9em;
+  color: #777;
+}
+
+/* Style pour l'animation de coeur */
+#heart-animation {
+  width: 100px;
+  height: 100px;
+  background-color: #e91e63;
+  position: relative;
+  transform: rotate(-45deg);
+  animation: pulse 1s infinite alternate;
+  margin: 20px auto; /* Centrer horizontalement */
+}
+
+#heart-animation:before,
+#heart-animation:after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: #e91e63;
+  border-radius: 50%;
+  position: absolute;
+}
+
+#heart-animation:before {
+  top: -50px;
+  left: 0;
+}
+
+#heart-animation:after {
+  left: 50px;
+  top: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(-45deg) scale(1);
+  }
+  100% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+/* Styles pour le prompt de mot de passe */
+.prompt {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1000; /* Assurer qu'il est au-dessus de tout */
+}
+
+.prompt input[type="password"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.prompt button {
+  background-color: #e91e63;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prompt button:hover {
+  background-color: #c2185b;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Styles pour la galerie de photos */
+#photo-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.photo-container {
+  width: 45%; /* Ajustement pour un affichage côte à côte sur mobile */
+  max-width: 150px; /* Limite la taille sur les écrans plus grands */
+  height: auto; /* Ajuste la hauteur en fonction de la largeur */
+  margin: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo-container:hover img {
+  transform: scale(1.1);
+}
+
+/* Confetti styles */
+.confetti {
+  width: 10px;
+  height: 10px;
+  background-color: #f06292;
+  position: absolute;
+  border-radius: 50%;
+  top: -10px;
+  animation: fallConfetti 3s forwards, spinConfetti 2s infinite linear;
+}
+
+@keyframes fallConfetti {
+  to {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+
+@keyframes spinConfetti {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Kiss animation styles */
+.kiss {
+  position: absolute;
+  font-size: 2em;
+  color: #e91e63;
+  animation: floatKiss 5s infinite, moveKissX 10s infinite alternate;
+  opacity: 0;
+}
+
+@keyframes floatKiss {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes moveKissX {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Heart animation styles */
+.heart {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat;
+    background-size: contain;
+    animation: love 8s linear infinite;
+}
+
+@keyframes love {
+    0% {
+        transform: translateY(100vh) translateX(-20vw) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    40%{
+        transform: translateY(60vh) translateX(10vw) rotate(360deg);
+    }
+    70% {
+        transform: translateY(30vh) translateX(0vw) rotate(180deg);
+    }
+    100% {
+        transform: translateY(-10vh) translateX(30vw) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+/* Media query pour les petits écrans (téléphones) */
+@media (max-width: 600px) {
+  header, main, footer {
+    width: 95%; /* Prend presque toute la largeur de l'écran */
+    padding: 10px; /* Réduit le padding pour un meilleur affichage */
+  }
+
+  h1 {
+    font-size: 1.5em; /* Réduit la taille du titre */
+  }
+
+  #message p {
+    font-size: 1em; /* Réduit la taille du texte */
+  }
+
+  .photo-container {
+    width: 45%; /* Permet d'afficher deux photos par ligne */
+    margin: 5px; /* Réduit les marges */
+  }
+}
