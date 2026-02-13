@@ -255,7 +255,7 @@ footer {
 /* Media query pour les petits écrans (téléphones) */
 @media (max-width: 600px) {
   header, main, footer {
-    width: 95%; /* Prend presque toute la largeur de l'écran */
+    width: 100%; /* Prend presque toute la largeur de l'écran */
     padding: 10px; /* Réduit le padding pour un meilleur affichage */
   }
 
