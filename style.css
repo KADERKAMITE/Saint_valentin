@@ -21,7 +21,7 @@ body {
 
 header, main, footer {
   width: 80%;
-  max-width: 600px;
+  max-width: 400px;
   margin-bottom: 20px;
   padding: 20px;
   background-color: #fff;
