@@ -3,47 +3,621 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Joyeuse Saint-Valentin, Wouly Bakhoum</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Stylecss">
+   <!-- Google Fonts pour une touche romantique -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome pour les icônes (cœurs, musique) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Tous les styles identiques à la version précédente */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fff9f9;
+            font-family: 'Quicksand', sans-serif;
+            color: #4a2c2c;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.2) 0%, transparent 30%);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 40px 40px 20px 20px;
+            box-shadow: 0 20px 40px rgba(226, 104, 124, 0.2);
+            padding: 30px 25px;
+            border: 1px solid #ffc0cb;
+        }
+
+        /* En-tête romantique */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d64161;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+            margin-bottom: 5px;
+        }
+
+        .header i {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin: 0 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #b3446c;
+            background: rgba(255, 255, 255, 0.6);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Album défilant */
+        .album-section {
+            margin: 40px 0;
+        }
+
+        .album-section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #c93e5c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .album-section h2 i {
+            color: #ff4d6d;
+            animation: beat 1.5s infinite;
+            margin: 0 10px;
+        }
+
+        .album-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 25px;
+            padding: 20px 10px 30px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #ffb6c1 #ffe4e9;
+        }
+
+        .album-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .album-scroll::-webkit-scrollbar-track {
+            background: #ffe4e9;
+            border-radius: 20px;
+        }
+
+        .album-scroll::-webkit-scrollbar-thumb {
+            background: #ffb6c1;
+            border-radius: 20px;
+        }
+
+        .album-scroll::-webkit-scrollbar-thumb:hover {
+            background: #ff9aac;
+        }
+
+        .photo-card {
+            flex: 0 0 auto;
+            width: 400px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+            border: 2px solid #ffe4e9;
+            text-align: center;
+            padding-bottom: 15px;
+            animation: fadeInUp 0.6s ease backwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 18px 30px rgba(214, 65, 97, 0.2);
+            border-color: #ffa5b9;
+            filter: brightness(1.02);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 3px solid #ffb6c1;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #d64161;
+            margin: 15px 0 5px;
+            padding: 0 10px;
+        }
+
+        .photo-card .date {
+            font-size: 0.9rem;
+            color: #a65e7a;
+            background: #fff0f3;
+            display: inline-block;
+            padding: 4px 15px;
+            border-radius: 30px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .photo-card p {
+            font-size: 1rem;
+            color: #6d3b4c;
+            padding: 0 15px 10px;
+            font-weight: 300;
+        }
+
+        /* Indicateurs de défilement */
+        .scroll-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .scroll-indicators button {
+            background: #ffb6c1;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+            transition: background 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-indicators button:hover {
+            background: #ff9aac;
+            transform: scale(1.1);
+        }
+
+        .scroll-indicators button:active {
+            transform: scale(0.95);
+        }
+
+        /* Section musique */
+        .music-section {
+            background: linear-gradient(145deg, #ffeef0, #fff9fa);
+            border-radius: 60px 60px 30px 30px;
+            padding: 30px 20px;
+            margin: 50px 0 30px;
+            text-align: center;
+            border: 2px dashed #ffb0bb;
+            box-shadow: inset 0 -2px 10px rgba(255, 192, 203, 0.3);
+        }
+
+        .music-section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #c93e5c;
+            margin-bottom: 15px;
+        }
+
+        .music-section i {
+            font-size: 2rem;
+            color: #ff4d6d;
+            margin: 0 8px;
+            animation: beat 1.5s infinite;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: #ff1a4c; }
+            100% { transform: scale(1); }
+        }
+
+        .music-player {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 50px;
+            padding: 15px 20px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+            border: 1px solid #ffbfcb;
+        }
+
+        audio {
+            width: 100%;
+            outline: none;
+            border-radius: 30px;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: #ffe3e8;
+        }
+
+        audio::-webkit-media-controls-play-button {
+            background-color: #ffb3c6;
+            border-radius: 50%;
+        }
+
+        /* Pied de page */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #b3446c;
+            border-top: 2px solid #ffd9e2;
+            padding-top: 25px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        footer i {
+            color: #ff4d6d;
+            margin: 0 5px;
+        }
+
+        /* Adaptation mobile */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 20px 15px; }
+            .header h1 { font-size: 2.2rem; }
+            .photo-card { width: 260px; }
+            .album-scroll { gap: 15px; }
+            .music-section h2 { font-size: 2rem; }
+        }
+
+        /* Petit cœur volant */
+        .floating-heart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255, 77, 109, 0.5);
+            animation: float 4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Message d'instruction (à supprimer après personnalisation) */
+        .demo-note {
+            background: #fff1f0;
+            border-left: 5px solid #ff6f91;
+            padding: 12px 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: #962d4e;
+        }
+
+        .demo-note i {
+            margin-right: 8px;
+            color: #ff4d6d;
+        }
+
+        /* Bouton de secours si autoplay bloqué */
+        #forcePlay {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+        }
+
+        #forcePlay:hover {
+            background: #ff1a4c;
+            transform: scale(1.02);
+        }
+
+        #forcePlay i {
+            margin-right: 8px;
+        }
+         /* code ajouter */
+         .prompt {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1000; /* Assurer qu'il est au-dessus de tout */
+}
+
+.prompt input[type="password"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.prompt button {
+  background-color: #e91e63;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prompt button:hover {
+  background-color: #c2185b;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+.mot {
+  font-size: 2rem;
+  color: #d64161;}
+.woly{
+  color: #000000;
+}
+/* Kiss animation styles */
+.kiss {
+  position: absolute;
+  font-size: 2em;
+  color: #e91e63;
+  animation: floatKiss 5s infinite, moveKissX 10s infinite alternate;
+  opacity: 0;
+}
+    </style>
 </head>
 <body>
 
   <div id="password-prompt" class="prompt">
-    <h1>Mot de passe </h1>
+    <h1 class="mot">Mot de passe </h1>
     <input type="password" id="password" placeholder="Entrez le nom de la copine de Kader">
     <button id="submit-password">Valider</button>
     <p id="password-error" class="error"></p>
   </div>
 
   <div id="valentine-content" style="display: none;">
-    <header>
-      <h1>Joyeuse Saint-Valentin, <span id="copine-name">Wouly Bakhoum</span></h1>
-    </header>
-
     <main>
       <section id="message">
-        <p>Mon amour, en ce jour spécial, je voulais te dire à quel point tu es importante pour moi. Chaque moment passé à tes côtés est un cadeau précieux.  J'ai hâte de partager encore beaucoup de moments merveilleux avec toi.</p>
-      </section>
-
-      <section id="special-element">
-        <!-- Insérer ici un élément spécial : une image, une animation, un poème... -->
-        <div id="heart-animation"></div>
-
-        <!-- Galerie de photos -->
-        <div id="photo-gallery">
-          <div class="photo-container">
-            <img src="images/kader.jpg" alt="Photo 1">
-          </div>
-          <div class="photo-container">
-            <img src="images/Wouly.jpg" alt="Photo 2">
-          </div>
+        
+       <div class="container">
+        <!-- Petite note pour toi (à enlever après modification) -->
+       <!-- Lecteur de musique douce avec lien en ligne pour tester l'autoplay -->
+        <div class="music-section">
+          <h1 class="mot">Joyeuse Saint-Valentin, <span id="copine-name" class="woly">Woly Bakhoum</span></h1>
+          <p>Mon amour, en ce jour spécial, je voulais te dire à quel point tu es importante pour moi. Chaque moment passé à tes côtés est un cadeau précieux.  J'ai hâte de partager encore beaucoup de moments merveilleux avec toi.</p>
+            <h2><i class="fas fa-music"></i> Musique <i class="fas fa-music"></i></h2>
+            <div class="music-player">
+                <!-- 
+                    Musique de démonstration (libre de droits) pour tester l'autoplay.
+                    Remplace cette URL par ton propre fichier audio (mp3 ou ogg) si nécessaire.
+                -->
+                <audio controls loop autoplay id="loveAudio">
+                    <source src="images/Son.mp3" type="audio/mpeg">
+                    <source src="notre-musique.ogg" type="audio/ogg">
+                    Ton navigateur ne supporte pas l'élément audio.
+                </audio>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #b3446c;">
+                    <i class="fas fa-headphones-alt"></i> Une douce mélodie pour accompagner nos souvenirs...
+                </p>
+            </div>
         </div>
-      </section>
-    </main>
+        <!-- En-tête -->
+        <div class="header">
+            <i class="fas fa-heart"></i>
+            <h1>Notre histoire d'amour</h1>
+            <i class="fas fa-heart"></i>
+            <p>Sama Antidote <i class="fas fa-smile-wink"></i></p>
+        </div>
 
-    <footer>
-      <p>Avec tout mon amour, Kader Kamité</p>
-    </footer>
-  </div>
+        <!-- Album défilant -->
+        <div class="album-section">
+            <h2><i class="fas fa-arrow-left"></i> Souvenir <i class="fas fa-arrow-right"></i></h2>
+            <div class="album-scroll" id="albumScroll">
+                <!-- CARTE 1 -->
+                <div class="photo-card" style="--i:1;">
+                    <img src="images/A.jpeg" alt="Notre premier rendez-vous">
+                    </div>
+                <!-- CARTE 2 -->
+                <div class="photo-card" style="--i:2;">
+                    <img src="images/C.jpeg" alt="Vacances à la mer">
+                    </div>
+                <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/B.jpeg" alt="Anniversaire surprise">
+                    </div>
+               
+            </div>
+            <!-- Flèches de navigation -->
+            <div class="scroll-indicators">
+                <button id="scrollLeft"><i class="fas fa-chevron-left"></i></button>
+                <button id="scrollRight"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+             <!--CENTRE D'INTERET -->
+
+           <div class="album-section">
+            <h2><i class="fas fa-arrow-left"></i> Centres d’intérêt <i class="fas fa-arrow-right"></i></h2>
+            <div class="album-scroll" id="albumScroll">
+                <!-- CARTE 1 -->
+                <div class="photo-card" style="--i:1;">
+                    <img src="images/1.jpeg" alt="Notre premier rendez-vous">
+                    <h3>Pays d'origine</h3>
+                     </div>
+                <!-- CARTE 2 -->
+                <div class="photo-card" style="--i:2;">
+                    <img src="images/2.jpeg" alt="Vacances à la mer">
+                    <h3>Religion</h3>
+                    </div>
+                <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/3.jpeg" alt="Anniversaire surprise">
+                    <h3>Métier de rêve</h3>
+                    </div>
+                    <!-- CARTE 3 -->
+                    <div class="photo-card" style="--i:3;">
+                    <img src="images/11.jpeg" alt="Anniversaire surprise">
+                    <h3>Couleur préféré</h3>
+                </div>
+               
+               <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/4.jpeg" alt="Anniversaire surprise">
+                    <h3>Aminé préféré</h3>
+                     </div>
+                <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/5.jpeg" alt="Anniversaire surprise">
+                    <h3>Série préféré</h3>
+                    </div>
+                <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/6.jpeg" alt="Anniversaire surprise">
+                    <h3>Chateur préféré</h3>
+                   </div>
+                <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/7.jpeg" alt="Anniversaire surprise">
+                    <h3>Rappeur préféré</h3>
+                   </div>
+                <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/8.jpeg" alt="Anniversaire surprise">
+                    <h3>Joueur préféré</h3>
+                    </div>
+                <!-- CARTE 3 -->
+                <div class="photo-card" style="--i:3;">
+                    <img src="images/9.jpeg" alt="Anniversaire surprise">
+                    <h3>Plat préféré</h3>
+                   </div>
+                   
+            </div>
+                    <!-- Flèches de navigation -->
+                    <div class="scroll-indicators">
+                        <button id="scrollLeft"><i class="fas fa-chevron-left"></i></button>
+                        <button id="scrollRight"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+        </div>
+        <!-- Footer -->
+        <footer>
+            <i class="fas fa-heart"></i> Pour toi, mon amour, aujourd'hui et toujours. <i class="fas fa-heart"></i><br>
+            <span style="font-family: 'Quicksand'; font-size: 1rem;">14 février 2026 - Notre Saint-Valentin</span>
+        </footer>
+    </div>
+
+    <!-- Petit cœur flottant -->
+    <div class="floating-heart">
+        <i class="fas fa-heart"></i>
+    </div>
+
+    <script>
+        (function() {
+            // Gestion de l'autoplay de la musique
+            window.addEventListener('load', function() {
+                var audio = document.getElementById('loveAudio');
+                if (!audio) return;
+
+                var playPromise = audio.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.log("Autoplay bloqué : ", error);
+                        var musicSection = document.querySelector('.music-section');
+                        if (!musicSection) return;
+
+                        if (document.getElementById('forcePlay')) return;
+
+                        var buttonContainer = document.createElement('div');
+                        buttonContainer.innerHTML = '<button id="forcePlay"><i class="fas fa-play"></i> Lancer la musique douce</button>';
+                        musicSection.appendChild(buttonContainer);
+
+                        document.getElementById('forcePlay').addEventListener('click', function() {
+                            audio.play()
+                                .then(function() {
+                                    var btn = document.getElementById('forcePlay');
+                                    if (btn) btn.remove();
+                                })
+                                .catch(function(e) {
+                                    console.log("Échec de la lecture manuelle", e);
+                                    alert("Impossible de lancer la musique. Cliquez sur le lecteur ci-dessus.");
+                                });
+                        });
+                    });
+                }
+            });
+
+            // Navigation de l'album défilant
+            const scrollContainer = document.getElementById('albumScroll');
+            const scrollLeftBtn = document.getElementById('scrollLeft');
+            const scrollRightBtn = document.getElementById('scrollRight');
+
+            if (scrollContainer && scrollLeftBtn && scrollRightBtn) {
+                const card = document.querySelector('.photo-card');
+                const cardWidth = card ? card.offsetWidth + 25 : 325;
+
+                scrollLeftBtn.addEventListener('click', () => {
+                    scrollContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                });
+
+                scrollRightBtn.addEventListener('click', () => {
+                    scrollContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                });
+            }
+        })();
+    </script>
 
   <script src="script.js"></script>
 </body>
